@@ -1,0 +1,26 @@
+package com.sergio.guardiasspringmvc.config;
+
+import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
+
+/**
+ *
+ * @author sergio
+ */
+public class DispatcherServletInitializer extends AbstractAnnotationConfigDispatcherServletInitializer { 
+
+     @Override 
+     protected Class<?>[] getRootConfigClasses() { 
+          return null; 
+     } 
+
+     @Override 
+     protected Class<?>[] getServletConfigClasses() { 
+          return new Class[] {WebApplicationContextConfig.class }; 
+     } 
+
+     @Override 
+     protected String[] getServletMappings() { 
+//          return new String[] { "/albosque/*" }; 
+          return new String[] { "/" }; 
+     } 
+} 
