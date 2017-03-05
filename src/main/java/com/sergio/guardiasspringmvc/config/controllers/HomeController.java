@@ -9,11 +9,14 @@ import org.springframework.web.servlet.ModelAndView;
  * @author sergio
  */
 @Controller
-public class MainController {
+public class HomeController {
     
-    @RequestMapping
+    @RequestMapping("/")
     public ModelAndView menu() {
-        return new ModelAndView("menu");
+        ModelAndView mav = new ModelAndView();
+        mav.addObject("bienvenido", "Bienvenido al Gestor de Guardias");
+        mav.setViewName("menu");
+        return mav;
     }
     
 }

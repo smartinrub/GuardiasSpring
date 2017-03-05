@@ -15,12 +15,11 @@ public class DispatcherServletInitializer extends AbstractAnnotationConfigDispat
 
      @Override 
      protected Class<?>[] getServletConfigClasses() { 
-          return new Class[] {WebApplicationContextConfig.class }; 
+          return new Class[] {WebConfig.class }; 
      } 
 
      @Override 
      protected String[] getServletMappings() { 
-//          return new String[] { "/albosque/*" }; 
           return new String[] { "/" }; 
      } 
 } 
