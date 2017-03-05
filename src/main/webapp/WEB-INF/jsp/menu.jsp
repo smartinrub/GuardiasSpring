@@ -13,10 +13,9 @@
     <body>
 
 
-        <div class="jumbotron"><h2 class="h2 text-center text-uppercase text-info">${bienvenido}</h2></div>
+        <div class="jumbotron"><h2 class="h2 text-center text-uppercase text-primary">${bienvenido}</h2></div>
         <div class="container">
             <div class="col-xs-4">
-
                 <form:form method="POST" modelAttribute="opcionElegida" >
                     <div class="form-group">
                     <form:radiobutton id="gestionar" path="name" value="A1" />

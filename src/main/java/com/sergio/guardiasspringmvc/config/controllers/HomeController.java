@@ -24,7 +24,7 @@ public class HomeController {
     }
     
     @RequestMapping(value = "/", method = RequestMethod.POST)
-    public String processFormOpcion(@Valid @ModelAttribute("opcionElegida") Opcion o) {
+    public String processFormOpcion(@ModelAttribute("opcionElegida") @Valid Opcion o) {
         String page = "";
         switch(o.getName()) {
             case "A1":
