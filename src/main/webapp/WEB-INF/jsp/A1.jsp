@@ -13,8 +13,9 @@
 
         <div class="container">
             <div class="col-xs-3">
-                <form:form method="POST" commandName="horaForm">
-                    <form:select path="name" cssClass="form-control">
+                <form:form method="POST" commandName="horaForm" >
+                    <label for="hora">Introduce la hora de la guardia</label>
+                    <form:select path="name" cssClass="form-control" id="hora">
                         <form:option value="primera" >Primera</form:option>
                         <form:option value="segunda" >Segunda</form:option>
                         <form:option value="tercera" >Tercera</form:option>
@@ -22,6 +23,7 @@
                         <form:option value="quinta" >Quinta</form:option>
                         <form:option value="sexta" >Sexta</form:option>
                     </form:select>
+                    <br>
                     <div class="form-group">
                         <input type="submit" id="submit" value="Enviar" class="btn btn-success">
                     </div>

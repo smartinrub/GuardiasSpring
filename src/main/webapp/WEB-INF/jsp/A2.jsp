@@ -14,6 +14,16 @@
         <div class="container">
             <div class="text-info">
                 <h4 class="h4">Elige profesor para la guardia de la <span class="text-danger">${getHora}</span> hora</h4>
+                <form:form method="POST" commandName="profesorForm">
+                    <div class="col-xs-1 glyphicon glyphicon-user" style="padding: 10px"></div>
+                    <div class="col-sm-2">
+                        <form:select path="nombre" cssClass="form-control">
+                            <c:forEach items="${profesores}" var="profesor">
+                                <form:option value="${profesor.nombre}">${profesor.nombre}</form:option>
+                            </c:forEach>
+                        </form:select>
+                    </div>
+                </form:form>
             </div>
         </div>
     </body>
