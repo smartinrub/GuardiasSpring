@@ -4,32 +4,46 @@ import com.sergio.guardiasspringmvc.model.Opcion;
 import javax.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 /**
  *
  * @author sergio
  */
 @Controller
+@RequestMapping("/")
 public class HomeController {
-    
-    @RequestMapping(value = "/", method = RequestMethod.GET)
-    public String menu(Model model) {
-        model.addAttribute("bienvenido", "Bienvenido al Gestor de Guardias");
+
+    @GetMapping
+    public String initForm(Model model) {
         Opcion opcion = new Opcion();
-        model.addAttribute("opcionElegida", opcion);
+        model.addAttribute("elegirOpcion", opcion);
         return "menu";
     }
-    
-    @RequestMapping(value = "/", method = RequestMethod.POST)
-    public String processFormOpcion(@ModelAttribute("opcionElegida") @Valid Opcion o) {
-        String page = "";
-        switch(o.getName()) {
-            case "A1":
-              page = "a1";
+
+    @PostMapping
+    public String processForm(@ModelAttribute("elegirOpcion") @Valid Opcion o, BindingResult result) {
+        if (result.hasErrors()) {
+            return "menu";
+        } else {
+            switch (o.getOpcionElegida()) {
+                case "A1":
+                    return "redirect:/gestionar";
+                case "B1":
+                    return "B1";
+                case "C1":
+                    return "C1";
+                case "D1":
+                    return "D1";
+                case "E1":
+                    return "E1";
+                default:
+                    return "menu";
+            }
         }
-        return page;
     }
 }

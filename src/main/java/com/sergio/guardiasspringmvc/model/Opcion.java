@@ -1,19 +1,22 @@
 package com.sergio.guardiasspringmvc.model;
 
+import javax.validation.constraints.NotNull;
+
 /**
  *
  * @author sergio
  */
 public class Opcion {
-    private String name;
 
-    public String getName() {
-        return name;
+    @NotNull(message = "Por favor elige una opción")
+    private String opcionElegida;
+
+    public String getOpcionElegida() {
+        return opcionElegida;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setOpcionElegida(String opcionElegida) {
+        this.opcionElegida = opcionElegida;
     }
-    
-    
+
 }

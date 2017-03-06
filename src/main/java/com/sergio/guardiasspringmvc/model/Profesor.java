@@ -12,10 +12,10 @@ public class Profesor {
     private String cuartaHora;
     private String quintaHora;
     private String sextaHora;
-
+    
     public String getNombre() {
         return nombre;
-    }
+}
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
