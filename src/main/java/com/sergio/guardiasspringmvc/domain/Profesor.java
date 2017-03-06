@@ -1,16 +1,37 @@
-package com.sergio.guardiasspringmvc.model;
+package com.sergio.guardiasspringmvc.domain;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 /**
  *
  * @author sergio
  */
+@Entity
+@Table(name = "2ASIR")
 public class Profesor {
+    @Id
+    @Column(name = "profesor")
     private String nombre;
+    
+    @Column(name = "primera")
     private String primeraHora;
+    
+    @Column(name = "segunda")
     private String segundaHora;
+    
+    @Column(name = "tercera")
     private String terceraHora;
+    
+    @Column(name = "cuarta")
     private String cuartaHora;
+    
+    @Column(name = "quinta")
     private String quintaHora;
+    
+    @Column(name = "sexta")
     private String sextaHora;
     
     public String getNombre() {

@@ -1,11 +1,20 @@
 package com.sergio.guardiasspringmvc.config;
 
-import com.sergio.guardiasspringmvc.model.Profesor;
-import java.util.ArrayList;
-import java.util.List;
+import javax.naming.NamingException;
+import javax.persistence.EntityManagerFactory;
+import javax.sql.DataSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.jdbc.datasource.DriverManagerDataSource;
+import org.springframework.orm.jpa.JpaTransactionManager;
+import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
+import org.springframework.orm.jpa.vendor.HibernateJpaDialect;
+import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
+import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.springframework.validation.Validator;
+import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
@@ -20,7 +29,35 @@ import org.springframework.web.servlet.view.JstlView;
 @Configuration
 @EnableWebMvc
 @ComponentScan(basePackages = "com.sergio.guardiasspringmvc")
+@EnableTransactionManagement
 public class WebConfig extends WebMvcConfigurerAdapter {
+
+    @Bean("transactionManager")
+    public PlatformTransactionManager getTransactionManager(EntityManagerFactory emf) {
+        return new JpaTransactionManager(emf);
+    }
+
+    @Bean
+    public LocalContainerEntityManagerFactoryBean entityManagerFactory(DataSource datasource) {
+        LocalContainerEntityManagerFactoryBean result = new LocalContainerEntityManagerFactoryBean();
+        result.setDataSource(datasource);
+        result.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
+        result.setJpaDialect(new HibernateJpaDialect());
+        result.setPackagesToScan("com.sergio.guardiasspringmvc.domain");
+
+        return result;
+    }
+
+    @Bean
+    public DataSource realDataSource() throws NamingException {
+        DriverManagerDataSource dataSource = new DriverManagerDataSource();
+        dataSource.setDriverClassName("com.mysql.jdbc.Driver");
+        dataSource.setUrl("jdbc:mysql://localhost:8889/Guardias?zeroDateTimeBehavior=convertToNull");
+        dataSource.setUsername("root");
+        dataSource.setPassword("root");
+        return dataSource;
+
+    }
 
     @Override
     public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
@@ -37,47 +74,21 @@ public class WebConfig extends WebMvcConfigurerAdapter {
         return resolver;
     }
 
-    @Bean
-    public List<Profesor> crearListaProfesores() {
-        List<Profesor> listaProfesores = new ArrayList<>();
-
-        Profesor profesor = new Profesor();
-        profesor.setNombre("Dominguez");
-        profesor.setPrimeraHora("Libre");
-        profesor.setSegundaHora("Libre");
-        profesor.setTerceraHora("Clase");
-        profesor.setCuartaHora("Libre");
-        profesor.setQuintaHora("Clase");
-        profesor.setSextaHora("Libre");
-        listaProfesores.add(profesor);
-
-        profesor = new Profesor();
-        profesor.setNombre("Garrido");
-        profesor.setPrimeraHora("Clase");
-        profesor.setSegundaHora("Clase");
-        profesor.setTerceraHora("Libre");
-        profesor.setCuartaHora("Libre");
-        profesor.setQuintaHora("Libre");
-        profesor.setSextaHora("Clase");
-        listaProfesores.add(profesor);
-
-        profesor = new Profesor();
-        profesor.setNombre("Perez");
-        profesor.setPrimeraHora("Clase");
-        profesor.setSegundaHora("Libre");
-        profesor.setTerceraHora("Libre");
-        profesor.setCuartaHora("Clase");
-        profesor.setQuintaHora("Libre");
-        profesor.setSextaHora("Libre");
-        listaProfesores.add(profesor);
-
-        return listaProfesores;
-    }
-
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/css/**").addResourceLocations("/resources/css/");
         registry.addResourceHandler("/js/**").addResourceLocations("/resources/js/");
         registry.addResourceHandler("/fonts/**").addResourceLocations("/resources/fonts/");
+    }
+
+    @Bean(name = "validator")
+    public LocalValidatorFactoryBean validator() {
+        LocalValidatorFactoryBean bean = new LocalValidatorFactoryBean();
+        return bean;
+    }
+
+    @Override
+    public Validator getValidator() {
+        return validator();
     }
 }

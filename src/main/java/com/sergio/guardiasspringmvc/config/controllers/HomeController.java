@@ -1,6 +1,6 @@
 package com.sergio.guardiasspringmvc.config.controllers;
 
-import com.sergio.guardiasspringmvc.model.Opcion;
+import com.sergio.guardiasspringmvc.domain.Opcion;
 import javax.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

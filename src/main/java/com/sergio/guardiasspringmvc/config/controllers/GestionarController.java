@@ -1,8 +1,8 @@
 package com.sergio.guardiasspringmvc.config.controllers;
 
-import com.sergio.guardiasspringmvc.model.Hora;
-import com.sergio.guardiasspringmvc.model.Profesor;
-import java.util.List;
+import com.sergio.guardiasspringmvc.domain.Hora;
+import com.sergio.guardiasspringmvc.domain.Profesor;
+import com.sergio.guardiasspringmvc.service.ProfesorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,7 +23,7 @@ import org.springframework.web.servlet.ModelAndView;
 public class GestionarController {
 
     @Autowired
-    private List<Profesor> listaProfesores;
+    private ProfesorService profesorService;
 
     @GetMapping(value = "/gestionar")
     public String horaForm(Model model) {
@@ -44,7 +44,7 @@ public class GestionarController {
     public ModelAndView showProfesoresHora(@ModelAttribute("horaSesion") /*Recogemos variable de sesion*/ Hora hora) {
         ModelAndView mav = new ModelAndView();
         mav.addObject("getHora", hora.getName());
-        mav.addObject("profesores", listaProfesores);
+        mav.addObject("profesores", profesorService.getAllProfesores());
         Profesor profesor = new Profesor();
         mav.addObject("profesorForm", profesor);
         mav.setViewName("A2");

@@ -1,4 +1,4 @@
-package com.sergio.guardiasspringmvc.model;
+package com.sergio.guardiasspringmvc.domain;
 
 import javax.validation.constraints.NotNull;
 
