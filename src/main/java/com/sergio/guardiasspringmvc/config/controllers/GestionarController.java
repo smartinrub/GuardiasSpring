@@ -44,7 +44,7 @@ public class GestionarController {
     public ModelAndView showProfesoresHora(@ModelAttribute("horaSesion") /*Recogemos variable de sesion*/ Hora hora) {
         ModelAndView mav = new ModelAndView();
         mav.addObject("getHora", hora.getName());
-        mav.addObject("profesores", profesorService.getAllProfesores());
+        mav.addObject("nombreProfesores", profesorService.getProfesoresByHora(hora.getName()));
         Profesor profesor = new Profesor();
         mav.addObject("profesorForm", profesor);
         mav.setViewName("A2");

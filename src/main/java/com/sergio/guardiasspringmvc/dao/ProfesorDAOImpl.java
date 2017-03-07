@@ -1,6 +1,5 @@
 package com.sergio.guardiasspringmvc.dao;
 
-import com.sergio.guardiasspringmvc.domain.Profesor;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -19,9 +18,10 @@ public class ProfesorDAOImpl implements ProfesorDAO {
     private EntityManager em;
 
     @Override
-    public List<Profesor> getProfesores() {
+    public List<String> getProfesoresByHora(String nombreHora) {
         try {
-            Query query = em.createQuery("SELECT e FROM Profesor e");
+            Query query = em.createQuery("SELECT e.nombre FROM Profesor e WHERE e." + nombreHora + "=:hora");
+            query.setParameter("hora", "Libre");
             return query.getResultList();
         } catch (PersistenceException e) {
             throw new PersistenceException(e.getMessage());

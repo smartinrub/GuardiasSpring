@@ -1,7 +1,6 @@
 package com.sergio.guardiasspringmvc.service;
 
 import com.sergio.guardiasspringmvc.dao.ProfesorDAO;
-import com.sergio.guardiasspringmvc.domain.Profesor;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,9 +17,9 @@ public class ProfesorServiceImpl implements ProfesorService{
     private ProfesorDAO profesorDAO;
 
     @Override
-    @Transactional
-    public List<Profesor> getAllProfesores() {
-        return profesorDAO.getProfesores();
+    @Transactional(readOnly = true)
+    public List<String> getProfesoresByHora(String nombreHora) {
+        return profesorDAO.getProfesoresByHora(nombreHora);
     }
     
 }

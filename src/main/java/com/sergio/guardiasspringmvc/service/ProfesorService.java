@@ -1,6 +1,5 @@
 package com.sergio.guardiasspringmvc.service;
 
-import com.sergio.guardiasspringmvc.domain.Profesor;
 import java.util.List;
 
 /**
@@ -9,5 +8,5 @@ import java.util.List;
  */
 public interface ProfesorService {
     
-    public List<Profesor> getAllProfesores();
+    public List<String> getProfesoresByHora(String nombreHora);
 }

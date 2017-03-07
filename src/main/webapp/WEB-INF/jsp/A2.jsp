@@ -18,8 +18,8 @@
                     <div class="col-xs-1 glyphicon glyphicon-user" style="padding: 10px"></div>
                     <div class="col-sm-2">
                         <form:select path="nombre" cssClass="form-control">
-                            <c:forEach items="${profesores}" var="profesor">
-                                <form:option value="${profesor.nombre}">${profesor.nombre}</form:option>
+                            <c:forEach items="${nombreProfesores}" var="profesor">
+                                <form:option value="${profesor}">${profesor}</form:option>
                             </c:forEach>
                         </form:select>
                     </div>

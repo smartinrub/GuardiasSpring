@@ -1,5 +1,6 @@
 package com.sergio.guardiasspringmvc.domain;
 
+import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -11,28 +12,28 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "2ASIR")
-public class Profesor {
+public class Profesor implements Serializable {
     @Id
     @Column(name = "profesor")
     private String nombre;
     
     @Column(name = "primera")
-    private String primeraHora;
+    private String primera;
     
     @Column(name = "segunda")
-    private String segundaHora;
+    private String segunda;
     
     @Column(name = "tercera")
-    private String terceraHora;
+    private String tercera;
     
     @Column(name = "cuarta")
-    private String cuartaHora;
+    private String cuarta;
     
     @Column(name = "quinta")
-    private String quintaHora;
+    private String quinta;
     
     @Column(name = "sexta")
-    private String sextaHora;
+    private String sexta;
     
     public String getNombre() {
         return nombre;
@@ -42,51 +43,51 @@ public class Profesor {
         this.nombre = nombre;
     }
 
-    public String getPrimeraHora() {
-        return primeraHora;
+    public String getPrimera() {
+        return primera;
     }
 
-    public void setPrimeraHora(String primeraHora) {
-        this.primeraHora = primeraHora;
+    public void setPrimera(String primera) {
+        this.primera = primera;
     }
 
-    public String getSegundaHora() {
-        return segundaHora;
+    public String getSegunda() {
+        return segunda;
     }
 
-    public void setSegundaHora(String segundaHora) {
-        this.segundaHora = segundaHora;
+    public void setSegunda(String segunda) {
+        this.segunda = segunda;
     }
 
-    public String getTerceraHora() {
-        return terceraHora;
+    public String getTercera() {
+        return tercera;
     }
 
-    public void setTerceraHora(String terceraHora) {
-        this.terceraHora = terceraHora;
+    public void setTercera(String tercera) {
+        this.tercera = tercera;
     }
 
-    public String getCuartaHora() {
-        return cuartaHora;
+    public String getCuarta() {
+        return cuarta;
     }
 
-    public void setCuartaHora(String cuartaHora) {
-        this.cuartaHora = cuartaHora;
+    public void setCuarta(String cuarta) {
+        this.cuarta = cuarta;
     }
 
-    public String getQuintaHora() {
-        return quintaHora;
+    public String getQuinta() {
+        return quinta;
     }
 
-    public void setQuintaHora(String quintaHora) {
-        this.quintaHora = quintaHora;
+    public void setQuinta(String quinta) {
+        this.quinta = quinta;
     }
 
-    public String getSextaHora() {
-        return sextaHora;
+    public String getSexta() {
+        return sexta;
     }
 
-    public void setSextaHora(String sextaHora) {
-        this.sextaHora = sextaHora;
+    public void setSexta(String sexta) {
+        this.sexta = sexta;
     }
 }
